@@ -1,0 +1,356 @@
+{
+  "version": 1,
+  "projects": {
+    "transloco-files-management": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/transloco-files-management",
+      "sourceRoot": "apps/transloco-files-management/src",
+      "prefix": "transloco-files-management",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/transloco-files-management",
+            "index": "apps/transloco-files-management/src/index.html",
+            "main": "apps/transloco-files-management/src/main.ts",
+            "polyfills": "apps/transloco-files-management/src/polyfills.ts",
+            "tsConfig": "apps/transloco-files-management/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/transloco-files-management/src/favicon.ico",
+              "apps/transloco-files-management/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/transloco-files-management/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/transloco-files-management/src/environments/environment.ts",
+                  "with": "apps/transloco-files-management/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "transloco-files-management:build",
+            "proxyConfig": "apps/transloco-files-management/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "transloco-files-management:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "transloco-files-management:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/transloco-files-management/tsconfig.app.json",
+              "apps/transloco-files-management/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/transloco-files-management/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/transloco-files-management/jest.config.js",
+            "tsConfig": "apps/transloco-files-management/tsconfig.spec.json",
+            "setupFile": "apps/transloco-files-management/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "translations": {
+      "root": "apps/translations",
+      "sourceRoot": "apps/translations/src",
+      "projectType": "application",
+      "prefix": "translations",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/translations",
+            "main": "apps/translations/src/main.ts",
+            "tsConfig": "apps/translations/tsconfig.app.json",
+            "assets": ["apps/translations/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/translations/src/environments/environment.ts",
+                  "with": "apps/translations/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "translations:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/translations/tsconfig.app.json",
+              "apps/translations/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/translations/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/translations/jest.config.js",
+            "tsConfig": "apps/translations/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "eager-translations": {
+      "projectType": "library",
+      "root": "libs/eager-translations",
+      "sourceRoot": "libs/eager-translations/src",
+      "prefix": "transloco-files-management",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/eager-translations/tsconfig.lib.json",
+              "libs/eager-translations/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/eager-translations/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/eager-translations/jest.config.js",
+            "tsConfig": "libs/eager-translations/tsconfig.spec.json",
+            "setupFile": "libs/eager-translations/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "scoped-library": {
+      "projectType": "library",
+      "root": "libs/scoped-library",
+      "sourceRoot": "libs/scoped-library/src",
+      "prefix": "transloco-files-management",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/scoped-library/tsconfig.lib.json",
+              "libs/scoped-library/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/scoped-library/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/scoped-library/jest.config.js",
+            "tsConfig": "libs/scoped-library/tsconfig.spec.json",
+            "setupFile": "libs/scoped-library/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "demo-app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/demo-app",
+      "sourceRoot": "apps/demo-app/src",
+      "prefix": "transloco-files-management",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/demo-app",
+            "index": "apps/demo-app/src/index.html",
+            "main": "apps/demo-app/src/main.ts",
+            "polyfills": "apps/demo-app/src/polyfills.ts",
+            "tsConfig": "apps/demo-app/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/demo-app/src/favicon.ico",
+              "apps/demo-app/src/assets"
+            ],
+            "styles": ["apps/demo-app/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/demo-app/src/environments/environment.ts",
+                  "with": "apps/demo-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "demo-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "demo-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "demo-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/demo-app/tsconfig.app.json",
+              "apps/demo-app/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/demo-app/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/demo-app/jest.config.js",
+            "tsConfig": "apps/demo-app/tsconfig.spec.json",
+            "setupFile": "apps/demo-app/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "demo-lib": {
+      "projectType": "library",
+      "root": "libs/demo-lib",
+      "sourceRoot": "libs/demo-lib/src",
+      "prefix": "transloco-files-management",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/demo-lib/tsconfig.lib.json",
+              "libs/demo-lib/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/demo-lib/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/demo-lib/jest.config.js",
+            "tsConfig": "libs/demo-lib/tsconfig.spec.json",
+            "setupFile": "libs/demo-lib/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "transloco-files-management"
+}

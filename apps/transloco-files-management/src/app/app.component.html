@@ -1,0 +1,29 @@
+<mat-sidenav-container class="sidenav-container" *transloco="let t">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="scope">Scope</a>
+      <a mat-list-item routerLink="inline-scope">Inline Loader Scope</a>
+      <a mat-list-item routerLink="from-server">From Server</a>
+      <a mat-list-item routerLink="from-eager-lib">From Eager Library</a>
+      <a mat-list-item routerLink="from-scoped-lib">From Scoped Library</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>{{t('title')}}</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,35 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@transloco-files-management/api-interfaces": [
+        "libs/api-interfaces/src/index.ts"
+      ],
+      "@transloco-files-management/ui": ["libs/ui/src/index.ts"],
+      "@transloco-files-management/eager-translations": [
+        "libs/eager-translations/src/index.ts"
+      ],
+      "@transloco-files-management/scoped-library": [
+        "libs/scoped-library/src/index.ts"
+      ],
+      "@transloco-files-management/demo-lib": ["libs/demo-lib/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
